@@ -1,6 +1,6 @@
 import tkinter
 import math
-
+import pygame
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -12,6 +12,14 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
 timer = None
+
+
+# ---------------------------- PLAY SOUND ------------------------------- #
+
+def play_sound():
+    pygame.mixer.init()
+    pygame.mixer.music.load("ting.mp3")
+    pygame.mixer.music.play()
 
 # ---------------------------- TIMER RESET ------------------------------- #
 
@@ -71,6 +79,7 @@ def count_down(count):
         global timer
         timer = window.after(1000, count_down, count - 1)
     else:
+        play_sound()
         start_timer()
         marks = ""
         work_sessions = math.floor(reps/2)
